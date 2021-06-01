@@ -10,7 +10,7 @@ const options: mongoose.ConnectOptions = {
 }
 
 mongoose.connect(URI, options, (error) => {
-  if (error) throw error
+  if (error) throw new Error(error.message)
 
   console.log('✨ MongoDB connected.')
 })
