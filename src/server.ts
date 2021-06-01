@@ -7,11 +7,15 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 
 const server = express()
+
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 server.use(cors())
 server.use(morgan('dev'))
 server.use(cookieParser())
+
+// connect to databse
+import './config/database'
 
 const PORT = process.env.PORT || 5000
 
