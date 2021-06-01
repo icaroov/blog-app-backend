@@ -1,12 +1,13 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-import { ErrorHandler } from '../utils/errorHandler'
 import User from '../models/userModel'
+import { ErrorHandler } from '../utils/errorHandler'
+import { generateActiveToken } from '../config/generateToken'
 
 const authController = {
-  register: async (req: Request, res: Response) => {
+  register: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name, account, password } = req.body
 
@@ -17,19 +18,24 @@ const authController = {
 
       const passwordHash = await bcrypt.hash(password, 12)
 
-      const newUser = new User({
+      const newUser = {
         name,
         account,
         password: passwordHash,
-      })
+      }
+
+      const active_token = generateActiveToken({ newUser })
+
+      // await User.create(newUser)
 
       res.json({
-        status: 'OK',
+        status: 'success',
         message: 'Register successfully',
+        active_token,
         data: newUser,
       })
     } catch (error) {
-      throw new ErrorHandler(500, error.message)
+      next(error)
     }
   },
 }
