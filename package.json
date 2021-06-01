@@ -2,10 +2,10 @@
   "name": "blog-app",
   "version": "1.0.0",
   "description": "A Blog App API with TypeScript",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "ts-node-dev server/index.ts",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev src/server.ts",
     "build": "tsc"
   },
   "keywords": [],
