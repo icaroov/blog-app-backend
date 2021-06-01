@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 
 import routes from './routes'
+import { setErrorHandler } from './middlewares/error'
 
 const server = express()
 
@@ -17,6 +18,9 @@ server.use(morgan('dev'))
 server.use(cookieParser())
 
 server.use('/api', routes.authRouter)
+
+// error handler
+server.use(setErrorHandler)
 
 // connect to databse
 import './config/database'
