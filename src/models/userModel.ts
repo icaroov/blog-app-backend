@@ -1,11 +1,12 @@
 import { model, Schema, Model, Document } from 'mongoose'
 
-type UserTypes = {
+export type UserTypes = {
   name: string
   account: string
   password: string
-  avatar: string
-  type: 'normal' | 'fast'
+  avatar?: string
+  role?: 'user' | 'admin'
+  type?: 'normal' | 'fast'
 } & Document
 
 const userSchema = new Schema(
@@ -32,9 +33,13 @@ const userSchema = new Schema(
       default:
         'https://res.cloudinary.com/ddi5agea1/image/upload/v1622569308/default-avatar.png',
     },
+    role: {
+      type: String,
+      default: 'user',
+    },
     type: {
       type: String,
-      default: 'normal', // fast
+      default: 'normal',
     },
   },
   { timestamps: true }
