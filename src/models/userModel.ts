@@ -1,13 +1,6 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { model, Schema, Model } from 'mongoose'
 
-export interface UserTypes extends Document {
-  name: string
-  account: string
-  password: string
-  avatar?: string
-  role?: 'user' | 'admin'
-  type?: 'normal' | 'fast'
-}
+import { IUser } from '../types/User'
 
 const userSchema = new Schema(
   {
@@ -39,12 +32,12 @@ const userSchema = new Schema(
     },
     type: {
       type: String,
-      default: 'normal',
+      default: 'register',
     },
   },
   { timestamps: true }
 )
 
-const User: Model<UserTypes> = model('User', userSchema)
+const User: Model<IUser> = model('User', userSchema)
 
 export default User
