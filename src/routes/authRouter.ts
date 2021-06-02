@@ -9,4 +9,10 @@ router.post('/register', validateRegister, authController.register)
 
 router.post('/active-account', authController.activeAccount)
 
+router.post('/login', authController.login)
+
+router.get('/logout', authController.logout)
+
+router.get('/refresh-token', authController.refreshToken)
+
 export default router
