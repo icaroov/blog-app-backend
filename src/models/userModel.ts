@@ -1,13 +1,13 @@
 import { model, Schema, Model, Document } from 'mongoose'
 
-export type UserTypes = {
+export interface UserTypes extends Document {
   name: string
   account: string
   password: string
   avatar?: string
   role?: 'user' | 'admin'
   type?: 'normal' | 'fast'
-} & Document
+}
 
 const userSchema = new Schema(
   {
