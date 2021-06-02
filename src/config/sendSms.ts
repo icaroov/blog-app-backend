@@ -14,7 +14,7 @@ export const sendSms = (to: string, body: string, text: string) => {
         from,
         to,
       })
-      .then((message) => console.log(`✨ Message sent successfully with id: ${message.sid}`))
+      .then(() => console.log('✨ Message sent successfully.'))
   } catch (error) {
     console.error(error)
   }
