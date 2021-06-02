@@ -53,9 +53,9 @@ export const sendEmail = async (to: string, url: string, text: string) => {
             `,
     }
 
-    const result = await transport.sendMail(mailOptions)
-
-    if (result) console.log('✨ Email sent successfully.')
+    const result = await transport
+      .sendMail(mailOptions)
+      .then(() => console.log('✨ Email sent successfully.'))
 
     return result
   } catch (error) {
